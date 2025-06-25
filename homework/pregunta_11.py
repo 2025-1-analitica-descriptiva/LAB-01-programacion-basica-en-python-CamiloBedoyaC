@@ -16,3 +16,18 @@ def pregunta_11():
 
 
     """
+    with open("files/input/data.csv", encoding="utf-8") as f:
+        x = [line.strip().split('\t') for line in f]
+
+    suma_por_letra = {}
+
+    for fila in x:
+        numero = int(fila[1])
+        letras = fila[3].split(",")
+
+        for letra in letras:
+            if letra in suma_por_letra:
+                suma_por_letra[letra] += numero
+            else:
+                suma_por_letra[letra] = numero
+    return dict(sorted(suma_por_letra.items()))
